@@ -3,7 +3,7 @@
 use rs_ray::{ray, Ray};
 use tauri::{
     CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem,
-    WindowEvent,
+    SystemTraySubmenu, WindowEvent,
 };
 use tauri_plugin_positioner::{Position, WindowExt};
 
@@ -17,6 +17,10 @@ fn main() {
     let tray = SystemTray::new().with_menu(
         SystemTrayMenu::new()
             .add_item(CustomMenuItem::new("hello".to_string(), "Hello"))
+            .add_submenu(SystemTraySubmenu::new(
+                "Submenu",
+                SystemTrayMenu::new().add_item(CustomMenuItem::new("submenu-item", "Submenu Item")),
+            ))
             .add_item(CustomMenuItem::new("quit".to_string(), "Quit")),
     );
 
@@ -79,7 +83,7 @@ fn main() {
                         std::process::exit(0);
                     }
                     "hello" => {
-                        ray!("Hello, World!").color("red");
+                        ray!("Hello, from the system tray").color("blue");
                     }
                     _ => {}
                 },
