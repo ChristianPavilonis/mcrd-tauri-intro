@@ -14,72 +14,72 @@ fn greet(name: &str) -> String {
 }
 
 fn main() {
-    // let tray = SystemTray::new().with_menu(
-    //     SystemTrayMenu::new()
-    //         .add_item(CustomMenuItem::new("quit".to_string(), "Quit"))
-    //         .add_item(CustomMenuItem::new("hide".to_string(), "Hide")),
-    // );
+    let tray = SystemTray::new().with_menu(
+        SystemTrayMenu::new()
+            .add_item(CustomMenuItem::new("hello".to_string(), "Hello"))
+            .add_item(CustomMenuItem::new("quit".to_string(), "Quit"))
+    );
 
-    let tray = SystemTray::new();
+    // let tray = SystemTray::new();
 
     tauri::Builder::default()
-        .plugin(tauri_plugin_positioner::init())
+        // .plugin(tauri_plugin_positioner::init())
         .system_tray(tray)
         .on_system_tray_event(|app, event| {
-            tauri_plugin_positioner::on_tray_event(app, &event);
+            // tauri_plugin_positioner::on_tray_event(app, &event);
             match event {
-                SystemTrayEvent::LeftClick {
-                    position: _,
-                    size: _,
-                    ..
-                } => {
-                    if let Some(tray) = app.get_window("tray") {
-                        if tray.is_visible().is_ok_and(|v| v) {
-                            let _ = tray.hide();
-                        } else {
-                            let _ = tray.show();
-                        }
-                    } else {
-                        let result = tauri::WindowBuilder::new(
-                            app,
-                            "tray",
-                            tauri::WindowUrl::App("index.html".into()),
-                        )
-                        .inner_size(500 as f64, 900 as f64)
-                        .decorations(false)
-                                .focused(true)
-                        .always_on_top(true)
-                        .build();
-
-                        if let Ok(window) = result {
-                            let _ = window.move_window(Position::TrayCenter);
-
-                            let window_handler = window.clone();
-
-                            window.on_window_event(move |event| match event {
-                                WindowEvent::Focused(focused) if !focused => {
-                                    let _ = window_handler.hide();
-                                }
-                                _ => {}
-                            });
-                        }
-                    }
-                }
-                SystemTrayEvent::RightClick { position, size, .. } => {}
-                SystemTrayEvent::DoubleClick {
-                    position: _,
-                    size: _,
-                    ..
-                } => {
-                    println!("system tray received a double click");
-                }
+                // SystemTrayEvent::LeftClick {
+                //     position: _,
+                //     size: _,
+                //     ..
+                // } => {
+                //     // this could be done in a much cleanr way probably
+                //     if let Some(tray) = app.get_window("tray") {
+                //         if tray.is_visible().is_ok_and(|v| v) {
+                //             let _ = tray.hide();
+                //         } else {
+                //             let _ = tray.show();
+                //         }
+                //     } else {
+                //         let result = tauri::WindowBuilder::new(
+                //             app,
+                //             "tray",
+                //             tauri::WindowUrl::App("index.html".into()),
+                //         )
+                //         .inner_size(500 as f64, 900 as f64)
+                //         .decorations(false)
+                //         .focused(true)
+                //         .always_on_top(true)
+                //         .build();
+                //
+                //         if let Ok(window) = result {
+                //             let _ = window.move_window(Position::TrayCenter);
+                //
+                //             let window_handler = window.clone();
+                //
+                //             window.on_window_event(move |event| match event {
+                //                 WindowEvent::Focused(focused) if !focused => {
+                //                     let _ = window_handler.hide();
+                //                 }
+                //                 _ => {}
+                //             });
+                //         }
+                //     }
+                // }
+                // SystemTrayEvent::RightClick { position, size, .. } => {}
+                // SystemTrayEvent::DoubleClick {
+                //     position: _,
+                //     size: _,
+                //     ..
+                // } => {
+                //     println!("system tray received a double click");
+                // }
                 SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
                     "quit" => {
                         std::process::exit(0);
                     }
-                    "hide" => {
-                        let window = app.get_window("main").unwrap();
-                        window.hide().unwrap();
+                    "hello" => {
+                        ray!("Hello, World!").color("red");
                     }
                     _ => {}
                 },
