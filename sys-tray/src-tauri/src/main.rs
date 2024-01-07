@@ -17,12 +17,12 @@ fn main() {
     let tray = SystemTray::new().with_menu(
         SystemTrayMenu::new()
             .add_item(CustomMenuItem::new("hello".to_string(), "Hello"))
-            .add_item(CustomMenuItem::new("quit".to_string(), "Quit"))
+            .add_item(CustomMenuItem::new("quit".to_string(), "Quit")),
     );
 
     // let tray = SystemTray::new();
 
-    tauri::Builder::default()
+    let mut app = tauri::Builder::default()
         // .plugin(tauri_plugin_positioner::init())
         .system_tray(tray)
         .on_system_tray_event(|app, event| {
@@ -88,11 +88,15 @@ fn main() {
         })
         .invoke_handler(tauri::generate_handler![greet])
         .build(tauri::generate_context!())
-        .expect("error while running tauri application")
-        .run(|_app_handle, event| match event {
-            tauri::RunEvent::ExitRequested { api, .. } => {
-                api.prevent_exit();
-            }
-            _ => {}
-        });
+        .expect("error while running tauri application");
+
+    #[cfg(target_os = "macos")]
+    app.set_activation_policy(tauri::ActivationPolicy::Accessory);
+
+    app.run(|_app_handle, event| match event {
+        tauri::RunEvent::ExitRequested { api, .. } => {
+            api.prevent_exit();
+        }
+        _ => {}
+    });
 }
