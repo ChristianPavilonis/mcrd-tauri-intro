@@ -1,3 +1,9 @@
+## About Me
+**Christian Pavilonis**
+I work [@Timbergrove](https://timbergrove.com/), and am currently building a tauri app targeting windows for tracking primarily Milwaukee tools over bluetooth. 
+
+GitHub: [@ChristianPavilonis](https://github.com/ChristianPavilonis)
+X: [@ChristianThePav](https://twitter.com/ChristianThePav)
 ## Intro
 Simply put, Tauri is a framework for building rust powered desktop apps with a web frontend. Like Electron but way better.
 [Benchmarks](https://tauri.app/v1/references/benchmarks)
@@ -120,3 +126,7 @@ Tauri 2.0, currently in alpha, supports IOS and android, as well as Swift and Ko
 
 #### Resources
 [Awesome Tauri](https://github.com/tauri-apps/awesome-tauri) OSS apps, plugins
+[My Chat GPT client](https://github.com/ChristianPavilonis/chat-gpt)
+[Amish Commit](https://github.com/amishdev/amish-commit)
+
+
