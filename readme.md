@@ -38,7 +38,7 @@ Follow the prompts, choose your stack, then cd in and get started.
 [**tauri.conf.json**](https://tauri.app/v1/api/config)
 - default window size
 - cli config (get to that later)
-- bunling
+- bundling
 
 #### Invoking Rust from the frontend
 
