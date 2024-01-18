@@ -15,7 +15,7 @@ Unlike Electron which essentially requires a full Chromium installation for the 
 ## Install
 [Prereqs](https://tauri.app/v1/guides/getting-started/prerequisites) | [Quick Start](https://tauri.app/v1/guides/getting-started/setup/)
 
-Tauri is a framework tooling to get started and through cargo or you javascript package manager of choice.
+Tauri provides tooling to get started and through cargo or your javascript package manager of choice.
 
 ```sh
 cargo create-tauri-app
