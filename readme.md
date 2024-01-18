@@ -39,6 +39,12 @@ Follow the prompts, choose your stack, then cd in and get started.
 - cli config (get to that later)
 - bundling
 
+#### Start development
+```
+cargo tauri dev
+# or use script in package.json with npm, etc.
+```
+
 #### Invoking Rust from the frontend
 
 First you need a tauri::command
@@ -59,7 +65,7 @@ await invoke("my_command", {...});
 ## System tray apps
 [Guide](https://tauri.app/v1/guides/features/system-tray)
 
-### Native menues
+### Native menus
 You can make a whole tauri app that lives in the system tray without writing any html.
 
 - Instantiate a `SystemTray`
