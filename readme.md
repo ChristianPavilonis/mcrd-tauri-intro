@@ -8,7 +8,6 @@ GitHub: [@ChristianPavilonis](https://github.com/ChristianPavilonis)
 X: [@ChristianThePav](https://twitter.com/ChristianThePav)
 ## Intro
 Simply put, Tauri is a framework for building rust powered desktop apps with a web frontend. Like Electron but way better.
-[Benchmarks](https://tauri.app/v1/references/benchmarks)
 
 ### How it works
 Unlike Electron which essentially requires a full Chromium installation for the app, Tauri uses native web views (OS level). This allows for tiny binaries.
