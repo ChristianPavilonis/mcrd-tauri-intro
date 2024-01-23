@@ -1,7 +1,7 @@
 ## About Me
 **Christian Pavilonis**
 
-I work [@Timbergrove](https://timbergrove.com/), and am currently building a tauri app targeting windows for tracking primarily Milwaukee tools over bluetooth.
+I work [@Timbergrove](https://timbergrove.com/), and am currently building a tauri app targeting windows for tracking power tools over bluetooth.
 
 GitHub: [@ChristianPavilonis](https://github.com/ChristianPavilonis)
 
