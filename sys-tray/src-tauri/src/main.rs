@@ -27,6 +27,7 @@ fn main() {
     // let tray = SystemTray::new();
 
     let mut app = tauri::Builder::default()
+        // plugin will place our window in the correct spot.
         // .plugin(tauri_plugin_positioner::init())
         .system_tray(tray)
         .on_system_tray_event(|app, event| {
@@ -39,7 +40,7 @@ fn main() {
                 // } => {
                 //     // this could be done in a much cleanr way probably
                 //     if let Some(tray) = app.get_window("tray") {
-                //         if tray.is_visible().is_ok_and(|v| v) {
+                //         if tray.is_visible().is_ok_and(|is_visible| is_visible) {
                 //             let _ = tray.hide();
                 //         } else {
                 //             let _ = tray.show();
@@ -70,14 +71,6 @@ fn main() {
                 //         }
                 //     }
                 // }
-                // SystemTrayEvent::RightClick { position, size, .. } => {}
-                // SystemTrayEvent::DoubleClick {
-                //     position: _,
-                //     size: _,
-                //     ..
-                // } => {
-                //     println!("system tray received a double click");
-                // }
                 SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
                     "quit" => {
                         std::process::exit(0);
@@ -94,6 +87,7 @@ fn main() {
         .build(tauri::generate_context!())
         .expect("error while running tauri application");
 
+    // keeps our app out of the dock on mac
     #[cfg(target_os = "macos")]
     app.set_activation_policy(tauri::ActivationPolicy::Accessory);
 
