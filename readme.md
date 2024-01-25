@@ -9,11 +9,11 @@ X: [@ChristianThePav](https://twitter.com/ChristianThePav)
 
 ## What is Tauri?
 
-Simply put, Tauri is a framework for building rust powered desktop apps with a web frontend. Like Electron but way better.
+Tauri is a framework for building rust powered desktop apps with a web frontend. Like Electron but way better.
 
 ### How it works
 
-Unlike Electron which essentially requires a full Chromium installation for the app, Tauri uses native web views (OS level). This allows for tiny binaries. (my current app is ~10MB)
+Unlike Electron which essentially requires a full Chromium installation for the app, Tauri uses native web views (OS level). This allows for tiny builds. (my current app is ~10MB)
 
 ## Install
 
@@ -77,6 +77,12 @@ await invoke("my_command", {...});
 ## System tray apps
 
 [Guide](https://tauri.app/v1/guides/features/system-tray)
+
+#### What we'll cover
+
+- Build a tray app with and without custom UI
+- How to instantiate and manage windows
+- how to use a tauri plugin
 
 ### Native menus
 
