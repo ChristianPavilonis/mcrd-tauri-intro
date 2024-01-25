@@ -35,8 +35,7 @@ fn main() {
                                 .build();
                             }
                         }
-                    }
-                    else {
+                    } else {
                         std::process::exit(0);
                     }
                 }

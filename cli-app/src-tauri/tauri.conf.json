@@ -32,15 +32,13 @@
     "security": {
       "csp": null
     },
-    "windows": [
-    ],
+    "windows": [],
     "cli": {
-      "description": "",
+      "description": "rust meetup cli demo",
       "longDescription": "",
       "beforeHelp": "",
       "afterHelp": "",
-      "args": [
-      ],
+      "args": [],
       "subcommands": {
         "greet": {
           "args": [
