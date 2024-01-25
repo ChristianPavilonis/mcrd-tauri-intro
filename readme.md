@@ -18,6 +18,7 @@ Unlike Electron which essentially requires a full Chromium installation for the 
 ## Install
 
 [Prereqs](https://tauri.app/v1/guides/getting-started/prerequisites) | [Quick Start](https://tauri.app/v1/guides/getting-started/setup/)
+
 Tauri provides tooling to get started through cargo or your javascript package manager of choice.
 
 ```sh
@@ -111,6 +112,7 @@ https://github.com/tauri-apps/tauri-plugin-positioner
 ## CLIs
 
 [Guide](https://tauri.app/v1/guides/features/cli)
+
 Tauri supports including a CLI with your app using the clap crate under the hood.
 
 Note: requires the "cli" feature flag in Cargo.toml
