@@ -1,20 +1,24 @@
 ## About Me
+
 **Christian Pavilonis**
-I work [@Timbergrove](https://timbergrove.com/), and am currently building a tauri app targeting windows for tracking primarily Milwaukee tools over bluetooth.
+I work [@Timbergrove](https://timbergrove.com/), and am currently building a tauri app targeting windows for GE tracking power tools over bluetooth.
 
 GitHub: [@ChristianPavilonis](https://github.com/ChristianPavilonis)
 
 X: [@ChristianThePav](https://twitter.com/ChristianThePav)
-## Intro
+
+## What is Tauri?
+
 Simply put, Tauri is a framework for building rust powered desktop apps with a web frontend. Like Electron but way better.
-[Benchmarks](https://tauri.app/v1/references/benchmarks)
 
 ### How it works
-Unlike Electron which essentially requires a full Chromium installation for the app, Tauri uses native web views (OS level). This allows for tiny binaries.
+
+Unlike Electron which essentially requires a full Chromium installation for the app, Tauri uses native web views (OS level). This allows for tiny binaries. (my current app is ~10MB)
 
 ## Install
+
 [Prereqs](https://tauri.app/v1/guides/getting-started/prerequisites) | [Quick Start](https://tauri.app/v1/guides/getting-started/setup/)
-Tauri is a framework tooling to get started and through cargo or you javascript package manager of choice.
+Tauri provides tooling to get started through cargo or your javascript package manager of choice.
 
 ```sh
 cargo create-tauri-app
@@ -23,6 +27,12 @@ cargo create-tauri-app
 ```
 
 Follow the prompts, choose your stack, then cd in and get started.
+
+Remember to install node_modules
+
+```sh
+bun install
+```
 
 #### Basic project structure.
 
@@ -34,13 +44,22 @@ Follow the prompts, choose your stack, then cd in and get started.
 ```
 
 [**tauri.conf.json**](https://tauri.app/v1/api/config)
+
 - default window size
 - cli config (get to that later)
-- bunling
+- bundling
+
+#### Start development
+
+```bash
+cargo tauri dev
+# or use script in package.json with npm, etc.
+```
 
 #### Invoking Rust from the frontend
 
 First you need a tauri::command
+
 ```rust
 #[tauri::command]
 fn my_command() -> <anything that can be Serialized> {
@@ -54,40 +73,52 @@ Add the command to the tauri::generate_handler! macro.
 await invoke("my_command", {...});
 ```
 
-
 ## System tray apps
+
 [Guide](https://tauri.app/v1/guides/features/system-tray)
 
-### Native menues
+### Native menus
+
 You can make a whole tauri app that lives in the system tray without writing any html.
 
+- add "system-tray" feature flag in `Cargo.toml`
 - Instantiate a `SystemTray`
 - call `.system_tray()` on the `tauri::Builder`
 - handle events with `.on_system_tray_event()` closure.
 
-### Custom System tray UI
+Note: I removed the default window in tauri.conf.json
+
+### Custom system tray UI
+
 Create a pretty little tray app with web tech.
 
 - Instantiate a `SystemTray` and leave it empty.
 - call `.system_tray()` on the builder
 - handle events with `.on_system_tray_event()` closure.
-    - Create a window using `tauri::WindowBuilder`, or hide/show.
-        - Set the size
-        - decorations to false (remove chrome)
-        - always on top to true
-    - Use a [plugin](https://github.com/tauri-apps/tauri-plugin-positioner) to position the window.
+  - Create a window using `tauri::WindowBuilder`, or hide/show.
+    - Set the size
+    - decorations to false (remove chrome)
+    - always on top to true
+  - Use a [plugin](https://github.com/tauri-apps/tauri-plugin-positioner) to position the window.
 
 #### Notes on plugins
+
 They often come with both a rust crate and an npm package. (some have to be installed via github url)
 Register by calling `.plugin()` with the `<plugin>::init()` function in the plugin's module
 
+https://github.com/tauri-apps/tauri-plugin-positioner
 
 ## CLIs
+
 [Guide](https://tauri.app/v1/guides/features/cli)
 Tauri supports including a CLI with your app using the clap crate under the hood.
 
+Note: requires the "cli" feature flag in Cargo.toml
+
 ### Defining commands/arguments
+
 To define a cli add a cli block to the `tauri.conf.json` file.
+
 ```
 {
   "tauri": {
@@ -110,6 +141,7 @@ To define a cli add a cli block to the `tauri.conf.json` file.
 ```
 
 ### Handle CLI matches
+
 ```rust
 match app.get_cli_matches() {
     ...
@@ -117,19 +149,23 @@ match app.get_cli_matches() {
 ```
 
 ### State Management
+
 [Guide](https://tauri.app/v1/guides/features/command/#accessing-managed-state)
+
 - Define a struct
 - call `app.manage(my_struct)`
 - inside of command use `tauri::State<MyStruct>`
 
 ## Tauri 2.0
+
 Tauri 2.0, currently in alpha, supports IOS and android, as well as Swift and Kotlin bindings.
 
+Beta coming next week!
+
 #### Resources
+
 [Awesome Tauri](https://github.com/tauri-apps/awesome-tauri) OSS apps, plugins
 
 [My Chat GPT client](https://github.com/ChristianPavilonis/chat-gpt)
 
 [Amish Commit](https://github.com/amishdev/amish-commit)
-
-
